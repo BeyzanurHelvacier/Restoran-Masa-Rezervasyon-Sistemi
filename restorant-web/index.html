@@ -1,0 +1,780 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title></title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Oswald:wght@200..700&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+      </head>
+    <body>
+
+      
+        <section class="parallax" >
+            <div class="background-image" id="parallax"></div>
+
+            <div class="logo-container">
+              <img src="img/logo.jpg" alt="Rosso diVino Logo" class="logo">
+          </div>
+
+            <div class="content">
+                <h1>Lezzetli Anlar İçin</h1>
+                <h2>Bizi Ziyaret Edin</h2>
+                <button class="rezervasyon-btn"><a href="#rez"> Rezervasyon Yap </a></button>
+            </div>
+        </section>
+        
+
+
+        <section id="rez">
+          
+            <form id="multiStepForm" action="#" method="POST" class="hidden-section" >
+              <fieldset class="form-step active" >
+                <h2>Rezervasyon Bilgileri</h2>
+                
+                <div class="form-container" >
+                  <div class="form-group">
+                    <label for="name">İsim Soyisim:</label>
+                    <input type="text" id="name" name="name" required>
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="phone">Telefon Numarası:</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" maxlength="14"  required placeholder="(555) 123 4567" oninput="formatPhoneNumber(this)">
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="email">E-posta (opsiyonel):</label>
+                    <input type="email" id="email" name="email">
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="date">Rezervasyon Tarihi:</label>
+                    <input type="date" id="date" name="date" required>
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="time">Rezervasyon Saati:</label>
+                    <input type="time" id="time" name="time" required>
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="guests">Kişi Sayısı:</label>
+                    <input type="number" id="guests" name="guests" min="1" required>
+                  </div>
+                </div>
+
+                <button type="button" class="next-btn">İleri</button>
+              </fieldset>
+              
+              <fieldset class="form-step" id="odeme">
+                  <div class="container">
+                    <h2>2. Menü Seçimleri</h2>
+                  
+                    <!-- Başlangıçlar -->
+                    <h3>🥣 Başlangıçlar (Ara Sıcaklar)</h3>
+                    <div class="menu-section">
+                      <div class="menu-option">
+                        <label class="checkbox-btn">
+                          <input type="checkbox" name="baslangic[]" value="Mercimek Çorbası" data-fiyat="60" onchange="toggleAdetInput(this)">
+                          <span class="btn-text">Mercimek Çorbası<br>- 60₺ -</span>
+                        </label>
+                        <div class="adet-input" style="display: none; margin-left: 20px;">
+                          <label>Adet:
+                            <input class="adet" type="number" name="baslangic_adet[mercimek]" min="1" value="1">
+                          </label>
+                        </div>
+                    </div>
+
+                      <div class="menu-option">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Domates Çorbası" data-fiyat="60" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Domates Çorbası<br>- 60₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[domates]" min="1" value="1">
+                            </label>
+                          </div>
+                      </div>
+
+                      <div class="menu-option">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Ezogelin Çorbası" data-fiyat="60" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Ezogelin Çorbası<br>- 60₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[ezogelin]" min="1" value="1">
+                            </label>
+                          </div>
+                      </div>
+
+                      <div class="menu-option">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Yayla Çorbası" data-fiyat="60" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Yayla Çorbası<br>- 60₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[yayla]" min="1" value="1">
+                            </label>
+                          </div>
+                      </div>
+                      
+                      <div class="menu-option">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Sigara Böreği" data-fiyat="75" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Sigara Böreği<br>- 75₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[sigara_boregi]" min="1" value="1">
+                            </label>
+                          </div>
+                      </div>
+
+                      <div class="menu-option">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Mücver" data-fiyat="78" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Mücver<br>- 78₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[mücver]" min="1" value="1">
+                            </label>
+                          </div>
+                      </div>
+
+                      <div class="menu-option">
+                        <div class="menu-pair">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Kalamar Tava" data-fiyat="150" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Kalamar Tava<br>- 150₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[kalamar]" min="1" value="1">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  
+                    <!-- Mezeler -->
+                    <h3>🥗 Mezeler</h3>
+                    <div class="menu-section">
+                      <div class="menu-option">                       
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Humus" data-fiyat="70" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Humus<br>- 70₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[humus]" min="1" value="1">
+                            </label>
+                          </div>                      
+                      </div>
+
+                      <div class="menu-option">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Acılı Ezme" data-fiyat="65" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Acılı Ezme<br>- 65₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[acili_ezme]" min="1" value="1">
+                            </label>
+                          </div>
+                      </div>
+
+                      <div class="menu-option">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Zeytinyağlı Yaprak Sarma" data-fiyat="95" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Zeytinyağlı Yaprak Sarma<br>- 95₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[sarma]" min="1" value="1">
+                            </label>
+                          </div>
+                      </div>
+
+                      <div class="menu-option">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Havuç Tarator" data-fiyat="70" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Havuç Tarator<br>- 70₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[havuc_tarator]" min="1" value="1">
+                            </label>
+                          </div>
+                      </div>
+
+                      <div class="menu-option">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Közlenmiş Patlıcan Salatası" data-fiyat="80" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Közlenmiş Patlıcan Salatası<br>- 80₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[kozlenmis_patlican]" min="1" value="1">
+                            </label>
+                          </div>
+                      </div>
+
+                      <div class="menu-option">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Haydari" data-fiyat="70" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Haydari<br>- 70₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[haydari]" min="1" value="1">
+                            </label>
+                          </div>
+                      </div>
+
+                      <div class="menu-option">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Zeytinyağlı Enginar" data-fiyat="100" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Zeytinyağlı Enginar<br>- 100₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[enginar]" min="1" value="1">
+                            </label>
+                          </div>
+                      </div>
+
+                    </div>
+                  
+                    <!-- Ana Yemekler -->
+                    <h3>🍽️ Ana Yemekler</h3>
+                    <div class="menu-section">
+                      <div class="menu-option">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Tavuklu Sezar Salata" data-fiyat="120" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Tavuklu Sezar Salata<br>- 120₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[tavuklu_sezar]" min="1" value="1">
+                            </label>
+                          </div>
+                      </div>
+
+                      <div class="menu-option">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Izgara Tavuk" data-fiyat="120" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Izgara Tavuk<br>- 120₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[izgara_tavuk]" min="1" value="1">
+                            </label>
+                          </div>
+                      </div>
+
+                      <div class="menu-option">
+                        <div class="menu-pair">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Köfte Tabağı" data-fiyat="175" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Köfte Tabağı<br>- 175₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[kofte]" min="1" value="1">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="menu-option">
+                        <div class="menu-pair">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Adana Kebap" data-fiyat="250" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Adana Kebap<br>- 250₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[kebap]" min="1" value="1">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="menu-option">
+                        <div class="menu-pair">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Dana Antrikot" data-fiyat="285" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Dana Antrikot<br>- 285₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[antrikot]" min="1" value="1">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="menu-option">
+                        <div class="menu-pair">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Izgara somon" data-fiyat="300" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Izgara somon<br>- 300₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[somon]" min="1" value="1">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="menu-option">
+                        <div class="menu-pair">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Mantı" data-fiyat="120" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Mantı<br>- 120₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[manti]" min="1" value="1">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="menu-option">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Tavuk Şnitzel" data-fiyat="95" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Tavuk Şnitzel<br>- 95₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[şnitzel]" min="1" value="1">
+                            </label>
+                          </div>
+                      </div>
+
+                      <div class="menu-option">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Etli güveç" data-fiyat="255" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Etli güveç<br>- 255₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[guvec]" min="1" value="1">
+                            </label>
+                          </div>
+                      </div>
+
+                      <div class="menu-option">
+                        <div class="menu-pair">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Patlıcan musakka" data-fiyat="145" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Patlıcan musakka<br>- 145₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[musakka]" min="1" value="1">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="menu-option">
+                        <div class="menu-pair">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Kaşarlı köfte" data-fiyat="195" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Kaşarlı köfte<br>- 195₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[kasarli_kofte]" min="1" value="1">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+            
+                    </div>
+                  
+                    <!-- Tatlılar -->
+                    <h3>🍰 Tatlılar</h3>
+                    <div class="menu-section">
+                      <div class="menu-option">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Baklava" data-fiyat="165" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Baklava<br>- 165₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[baklava]" min="1" value="1">
+                            </label>
+                          </div>
+                      </div>
+                      <div class="menu-option">                        
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Fırın Sütlaç" data-fiyat="85" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Fırın Sütlaç<br>- 85₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[sutlac]" min="1" value="1">
+                            </label>
+                          </div>           
+                      </div>
+                      <div class="menu-option">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Kazandibi" data-fiyat="95" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Kazandibi<br>- 95₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[kazandibi]" min="1" value="1">
+                            </label>
+                          </div>
+                      </div>
+                      <div class="menu-option">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Tiramisu" data-fiyat="85" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Tiramisu<br>- 85₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[tiramisu]" min="1" value="1">
+                            </label>
+                          </div>
+                      </div>
+                      <div class="menu-option">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Profiterol" data-fiyat="100" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Profiterol<br>- 100₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[profiterol]" min="1" value="1">
+                            </label>
+                          </div>
+                      </div>
+                      <div class="menu-option">
+                        <div class="menu-pair">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Cheesecake" data-fiyat="125" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Cheesecake<br>- 125₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[cheesecake]" min="1" value="1">
+                            </label>
+                          </div>
+                        </div>                      
+                      </div>
+
+
+                      <div class="menu-option">
+                        <div class="menu-pair">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Künefe" data-fiyat="185" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Künefe<br>- 185₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[künefe]" min="1" value="1">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="menu-option">
+                        <div class="menu-pair">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Mozaik Pasta" data-fiyat="80" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Mozaik Pasta<br>- 80₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[mozaik]" min="1" value="1">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="menu-option">
+                        <div class="menu-pair">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Dondurma" data-fiyat="55" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Dondurma<br>- 55₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[dondurma]" min="1" value="1">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  
+                    <!-- İçecekler -->
+                    <h3>🍷 İçecekler</h3>
+                    <div class="menu-section">
+                      <div class="menu-option">
+                        <div class="menu-pair">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Çay" data-fiyat="35" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Çay<br>- 35₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[cay]" min="1" value="1">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="menu-option">
+                        <div class="menu-pair">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Türk Kahvesi" data-fiyat="55" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Türk Kahvesi<br>- 55₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[kahve]" min="1" value="1">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="menu-option">
+                        <div class="menu-pair">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Su" data-fiyat="10" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Su<br>- 10₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[su]" min="1" value="1">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="menu-option">
+                        <div class="menu-pair">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Limonata" data-fiyat="45" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Limonata<br>- 45₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[limonata]" min="1" value="1">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="menu-option">
+                        <div class="menu-pair">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Ayran" data-fiyat="25" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Ayran<br>- 25₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[ayran]" min="1" value="1">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="menu-option">
+                          <label class="checkbox-btn">
+                            <input type="checkbox" name="baslangic[]" value="Buzlu Limonlu Soda" data-fiyat="55" onchange="toggleAdetInput(this)">
+                            <span class="btn-text">Buzlu Limonlu Soda<br>- 55₺ -</span>
+                          </label>
+                          <div class="adet-input" style="display: none; margin-left: 20px;">
+                            <label>Adet:
+                              <input class="adet" type="number" name="baslangic_adet[profitesodarol]" min="1" value="1">
+                            </label>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+              
+                <h2>  Notlar / Özel İstekler</h2>
+                <textarea name="notes" rows="4" placeholder="Örn: Glutensiz ekmek istiyorum, tatlım sıcak gelsin..."></textarea>
+
+                <hr>
+                <h4>Seçilen Ürünler:</h4>
+                <ul id="secilenListesi"></ul>
+                <p><strong>Toplam:</strong> <span id="toplamTutar">0</span> ₺</p>
+
+                <button type="button" class="prev-btn" onclick="scrollToOdeme()">Geri</button>
+                <button type="button" class="next-btn" onclick="scrollToOdeme()">İleri</button>
+              </fieldset>
+              
+              <fieldset class="form-step form-group">
+                <div class="container-odeme">
+                <div class="form-left">
+                  <h2>Ödeme Bilgileri</h2>
+                  <input type="text" id="cardNumber" placeholder="Kart Numarası" maxlength="19">
+                  <input type="text" id="expiry" placeholder="Son Kullanma Tarihi (AA/YY)" maxlength="5">
+                  <input type="text" id="cvv" placeholder="CVV" maxlength="3">
+                  <button type="button" class="prev-btn">Geri</button>
+                  <button type="submit" onclick="rezervasyonuTamamla()" class="btn btn-success">Rezervasyonu Tamamla</button>
+                </div>
+                <div class="form-right">
+                  <h4>Seçiminiz:</h4>
+                  <ul id="odemeSecilenListesi"></ul>
+                  <p><strong>Toplam:</strong> <span id="odemeToplamTutar">0</span> ₺</p>
+                </div>
+                </div>
+              </fieldset>
+              
+            </form>
+        </section>
+
+
+
+        <section class="main" id="manu">
+            <h1>Menü</h1>
+
+            <div class="menu-container" id="menuContainer">
+                <div class="menu-item">
+                    <img src="img/bööörek.png" alt="Sigara Böreği">
+                    <p>Sigara Böreği</p>
+                </div>
+
+                <div class="menu-item">
+                    <img src="img/somon.png" alt="Izgara Somon">
+                    <p>Izgara Somon</p>
+                </div>
+
+                <div class="menu-item">
+                    <img src="img/şnitzel.png" alt="Tavuk Şnitzel">
+                    <p>Tavuk Şnitzel</p>
+                </div>
+            </div>
+            <div class="extra-menu" id="extraMenu"></div>
+
+            <div class="center-wrapper">
+                <div class="toggle-line">
+                  <span id="toggleMenuText">Hepsini Göster</span>
+                </div>
+            </div>
+            
+            <h1>Hakkımızda</h1>
+            <section class="about-section hidden-section">
+                <div class="about-container">
+                    <div class="about-text">
+                        <p>
+                        "Lezzet Durağı", 2010 yılında, yerel malzemeleri ve geleneksel tarifleri modern dokunuşlarla birleştirmek amacıyla kuruldu. Şefimiz, aile tariflerini ve bölgenin zengin kültürel mirasını bir araya getirerek, misafirlerimize unutulmaz bir gastronomi deneyimi sunmayı hedefliyor. Her tabak, sevgi ve özenle hazırlanarak, misafirlerimizin damak tadına hitap etmek için tasarlanmıştır.
+                        </p>
+                    </div>
+                    <div class="about-image">
+                        <img src="img/abdibey_130.jpg" alt="Restoran Masası">
+                    </div>
+                    <div class="about-image">
+                        <img src="img/kadeh.jpg" alt="Restoran Masası">
+                    </div>
+                    <div class="about-text">
+                        <p>
+                        "Lezzet Durağı", 2010 yılında, yerel malzemeleri ve geleneksel tarifleri modern dokunuşlarla birleştirmek amacıyla kuruldu. Şefimiz, aile tariflerini ve bölgenin zengin kültürel mirasını bir araya getirerek, misafirlerimize unutulmaz bir gastronomi deneyimi sunmayı hedefliyor. Her tabak, sevgi ve özenle hazırlanarak, misafirlerimizin damak tadına hitap etmek için tasarlanmıştır.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+          
+        <section>
+            <div id="greetingBox">
+                <span id="greetingIcon">☀️</span>
+                <span id="greetingText">Merhaba!</span>
+            </div>
+        </section>
+
+        <footer class="footer">
+          <div class="footer-container">
+            <div class="footer-column">
+              <h2>ROSSO DiVINO</h2>
+              <p>İtalyan ve Türk mutfağının en seçkin tatlarını şık bir atmosferde keşfedin.</p>
+            </div>
+            <div class="footer-column">
+              <h3>İletişim</h3>
+              <ul>
+                <li>📍 Örnek Mah. Cad. No:12, İstanbul</li>
+                <li>📞 0 (212) 123 45 67</li>
+                <li>✉️ info@restoranadi.com</li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h3>Hızlı Erişim</h3>
+              <ul>
+                <li><a href="#">Ana Sayfa</a></li>
+                <li><a href="#manu">Menü</a></li>
+                <li><a href="#rez">Rezervasyon</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h3>Bizi Takip Edin</h3>
+              <div class="social-icons">
+                <a href="#">🌐</a>
+                <a href="#">📸</a>
+                <a href="#">🐦</a>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            © 2025 ROSSO DiVINO. Tüm hakları saklıdır.
+          </div>
+        </footer>
+        
+        
+
+        <script src="script.js"></script>
+
+        <script>
+          const steps = document.querySelectorAll(".form-step");
+          const nextBtns = document.querySelectorAll(".next-btn");
+          const prevBtns = document.querySelectorAll(".prev-btn");
+          let currentStep = 0;
+        
+          function showStep(index) {
+            steps.forEach((step, i) => {
+              step.classList.toggle("active", i === index);
+            });
+          }
+
+          window.scrollTo({
+    top: document.getElementById("multiStepForm").offsetTop,
+    behavior: "smooth"
+  });
+        
+          nextBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+              if (currentStep < steps.length - 1) {
+                currentStep++;
+                showStep(currentStep);
+              }
+            });
+          });
+        
+          prevBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+              if (currentStep > 0) {
+                currentStep--;
+                showStep(currentStep);
+              }
+            });
+          });
+        
+          showStep(currentStep);
+        </script>
+        
+
+    </body>
+</html>
